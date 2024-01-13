@@ -1,13 +1,16 @@
 
-## NestJS ReDoc (Swagger UI Alternative) - Jozefazz
+## NestJS ReDoc (Swagger UI Alternative) - Jozefazz Version
 
+## Introduction
+I have tried most of the Redoc integrate NestJS solutions available on the market, but due to a lack of maintenance over a long period, many outdated packages were being used, leading to installation failures. This version has been modified and improved, allowing for perfect integration with NestJS 10.0.0
 
+-Jozefazz
 ## Features
 
 - Customizable theme
 - It's almost a drop in replacement for you current swagger UI, you only need to import this package and modify any settings you may want to change (e.g: Page title, ReDoc options)
 
-NB: Please read the [ReDoc](https://github.com/Redocly/redoc) Documentation firstly.
+NB: Please read the [ReDoc](https://redocly.com/docs/redoc/) Documentation firstly.
 
 ## 🗿 Installation
 
@@ -58,6 +61,84 @@ const redocOptions: RedocOptions = {
 };
 // Instead of using SwaggerModule.setup() you call this module
 await RedocModule.setup('/docs', app, document, redocOptions);
+```
+
+### You can build a function for the setup
+Create a file "setup.redoc.ts"
+```typescript
+import type { INestApplication } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { RedocModule, RedocOptions } from '@jozefazz/nestjs-redoc';
+import * as process from 'process';
+
+export async function setupRedoc(app: INestApplication) {
+  const documentBuilder = new DocumentBuilder()
+    .setTitle(`${process.env.DOCS_TITLE}`)
+    .setVersion('1.0')
+    .setDescription('Powered by Jozefazz')
+    .addBearerAuth(
+      {
+        description: `Please enter token in following format: Bearer <JWT>`,
+        name: 'Authorization',
+        bearerFormat: 'Bearer',
+        scheme: 'Bearer',
+        type: 'http',
+        in: 'Header',
+      },
+      'access-token',
+    );
+
+  if (process.env.API_VERSION) {
+    documentBuilder.setVersion(process.env.API_VERSION);
+  }
+
+  const document = SwaggerModule.createDocument(app, documentBuilder.build());
+  const redocOptions: RedocOptions = {
+    title: `${process.env.DOCS_TITLE}`,
+    logo: {
+      url: `${process.env.DOCS_LOGO}`,
+      backgroundColor: '#d0e8c5',
+      altText: 'LOGO',
+    },
+    theme: {
+      typography: {
+        fontSize: '16px',
+        fontWeightBold: '900',
+      },
+      sidebar: {
+        backgroundColor: '#d0e8c5',
+      },
+      rightPanel: {
+        backgroundColor: '#01312b',
+      },
+    },
+    sortPropsAlphabetically: true,
+    hideDownloadButton: false,
+    hideHostname: false,
+    noAutoAuth: true,
+    pathInMiddlePanel: true,
+    auth: {
+      enabled: true,
+      user: 'admin',
+      password: `${process.env.DOCS_PASSWORD}`,
+    },
+    tagGroups: [
+      {
+        name: 'Core resources',
+        tags: ['authentication', 'user'],
+      },
+    ],
+  };
+  await RedocModule.setup('docs', app, document, redocOptions);
+  console.info(
+    `Redoc Documentation: http://localhost:${process.env.PORT}/docs`,
+  );
+}
+
+```
+In your main.ts, add this line before "await app.listen(3000);"
+```
+await setupRedoc(app);
 ```
 
 ## Available options
@@ -112,4 +193,4 @@ Apply the properties defined in ResolvedThemeInterface to the key called "theme"
 | href            | href tag for Logo, it defaults to the host used for your API spec                     | string |
 
 ### Special Thanks
-Forhttps://github.com/ojoanalogo/nestjs-redoc
+Forked from https://github.com/ojoanalogo/nestjs-redoc

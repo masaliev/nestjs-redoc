@@ -1,6 +1,6 @@
 {
   "name": "@jozefazz/nestjs-redoc",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "NestJS ReDoc (Swagger UI Alternative)",
   "repository": "https://github.com/jozefazz/nestjs-redoc",
   "author": "Jozefazz",

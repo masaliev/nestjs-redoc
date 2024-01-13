@@ -1,49 +1,20 @@
-<h1 align="center">
-  NestJS-Redoc
-  <h4 align="center">ReDoc powered frontend for your NestJS API spec</h4>
-</h1>
 
-<div align="center">
-  <a href="http://makeapullrequest.com">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs welcome" />
-  </a>
-  <a href="https://github.com/nestjs/nest">
-    <img src="https://raw.githubusercontent.com/nestjsx/crud/master/img/nest-powered.svg?sanitize=true" alt="Nest Powered" />
-  </a>
-   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</div>
+## NestJS ReDoc (Swagger UI Alternative) - Jozefazz
 
-<div align="center">
 
-[⚡ Features](#-Features) |
-[🗿 Installation](#-Installation) |
-[❓ How to use](#-How-to-use) |
-[👨‍💻👩‍💻 Contributors](#--Contributors) |
-[📜 Changelog](#-Changelog) |
-[📋 ToDo](#-ToDo)
-
-</div>
-
-<img src="./redoc.png"/>
-
-<p align="center">
-
-📒 This is a [ReDoc](https://github.com/Redocly/redoc) powered frontend for your NestJS API spec.
-
-</p>
-
-## ⚡ Features
+## Features
 
 - Customizable theme
 - It's almost a drop in replacement for you current swagger UI, you only need to import this package and modify any settings you may want to change (e.g: Page title, ReDoc options)
 
+NB: Please read the [ReDoc](https://github.com/Redocly/redoc) Documentation firstly.
+
 ## 🗿 Installation
 
-Using npm: `npm i nestjs-redoc`
+Using npm: `npm install @jozefazz/nestjs-redoc`
 
-Using yarn: `yarn add nestjs-redoc`
 
-## ❓ How to use
+## How to use
 
 You need to install the [Swagger Module](https://github.com/nestjs/swagger) first if you want to get definitions updated with your project.
 
@@ -140,29 +111,5 @@ Apply the properties defined in ResolvedThemeInterface to the key called "theme"
 | altText         | Alt tag for Logo                                                                      | string | PetStore |
 | href            | href tag for Logo, it defaults to the host used for your API spec                     | string |
 
-## 👨‍💻👩‍💻 Contributors
-
-- Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helped with code refactoring and unit tests! 👏
-- @joemaidman
-
-## 📜 Changelog
-
-Bellow are a list of changes, some might go undocumented
-
-- 1.0.0 - First release
-- 1.1.0 - Minor changes, nothing too important
-- 1.2.0 - Added unit tests, refactored code
-- 1.2.1 - Updated to work with the latest version of nest swagger module
-- 1.2.2 - Fixed issue with URL on windows
-- 1.3.0 - Added favicon option (by @joemaidman)
-- 2.0.0 - Added authentication option, fixed issues with CSP and nestjs version compatibility issues
-- 2.1.0 - Added x-tagGroups extension property
-- 2.1.1 - Fixed CSP issue on Safari browser
-- 2.2.0 - Added version property, this way you can pin redoc to a specific version
-- 2.2.2 - Updated to support Nest 8
-
-## 📋 ToDo
-
-- Add Fastify support
-- Add the option to use a spec URL instead of document
-- Fix tests
+### Special Thanks
+Forhttps://github.com/ojoanalogo/nestjs-redoc

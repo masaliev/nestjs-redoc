@@ -1,6 +1,6 @@
 {
   "name": "@jozefazz/nestjs-redoc",
-  "version": "1.0.2",
+  "version": "2.2.3",
   "description": "NestJS ReDoc (Swagger UI Alternative)",
   "repository": {
     "type": "git",
